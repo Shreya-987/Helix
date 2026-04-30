@@ -1,6 +1,7 @@
 """Workday integration service – retrieves and caches supervisor information."""
 
 import logging
+import os
 from functools import lru_cache
 from typing import Optional
 
@@ -10,7 +11,9 @@ from app.schemas.nomination import SupervisorInfo
 
 logger = logging.getLogger(__name__)
 
-_WORKDAY_BASE_URL = "https://workday.example.com/api/v1"  # Replace with real URL
+_WORKDAY_BASE_URL = os.getenv(
+    "WORKDAY_BASE_URL", "https://workday.example.com/api/v1"
+)
 
 
 class WorkdayService:
